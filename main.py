@@ -133,26 +133,26 @@ def getMesa():
     return jsonify(json)
 
 
-@app.route("/mesas", methods=['POST'])
+@app.route("/mesa", methods=['POST'])
 def crearMesa():
     data = request.get_json()
     headers = {"Content-Type": "application/json; charset=utf-8"}
-    url = dataConfig["url-backend-resultados"] + '/mesas'
+    url = dataConfig["url-backend-resultados"] + '/mesa'
     response = requests.post(url, headers=headers, json=data)
     json = response.json()
     return jsonify(json)
 
 
-@app.route("/mesas/<string:id>", methods=['GET'])
+@app.route("/mesa/<string:id>", methods=['GET'])
 def getMesas(id):
     headers = {"Content-Type": "application/json; charset=utf-8"}
-    url = dataConfig["url-backend-resultados"] + '/mesas/' + id
+    url = dataConfig["url-backend-resultados"] + '/mesa/' + id
     response = requests.get(url, headers=headers)
     json = response.json()
     return jsonify(json)
 
 
-@app.route("/mesas/<string:id>", methods=['PUT'])
+@app.route("/mesa/<string:id>", methods=['PUT'])
 def modificarMesa(id):
     data = request.get_json()
     headers = {"Content-Type": "application/json; charset=utf-8"}
@@ -162,10 +162,10 @@ def modificarMesa(id):
     return jsonify(json)
 
 
-@app.route("/mesas/<string:id>", methods=['DELETE'])
+@app.route("/mesa/<string:id>", methods=['DELETE'])
 def eliminarMesa(id):
     headers = {"Content-Type": "application/json; charset=utf-8"}
-    url = dataConfig["url-backend-resultados"] + '/mesas/' + id
+    url = dataConfig["url-backend-resultados"] + '/mesa/' + id
     response = requests.delete(url, headers=headers)
     json = response.json()
     return jsonify(json)
@@ -181,7 +181,7 @@ def getResultado():
     return jsonify(json)
 
 
-@app.route("/resultado/mesas/<string:id_mesa>/candidatos/<string:id_candidato>", methods=['POST'])
+@app.route("/resultado/mesa/<string:id_mesa>/candidato/<string:id_candidato>", methods=['POST'])
 def crearResultado(id_mesa, id_candidato):
     data = request.get_json()
     headers = {"Content-Type": "application/json; charset=utf-8"}
@@ -200,11 +200,11 @@ def getResultados(id):
     return jsonify(json)
 
 
-@app.route("/resultado/<string:id_resultado>/mesas/<string:id_mesa>/candidatos/<string:id_candidato>", methods=['PUT'])
+@app.route("/resultado/<string:id_resultado>/mesa/<string:id_mesa>/candidato/<string:id_candidato>", methods=['PUT'])
 def modificarResultado(id_resultado, id_mesa, id_candidato):
     data = request.get_json()
     headers = {"Content-Type": "application/json; charset=utf-8"}
-    url = dataConfig["url-backend-resultados"] + '/resultados/' + id_resultado, id_mesa, id_candidato
+    url = dataConfig["url-backend-resultados"] + '/resultado/' + id_resultado, id_mesa, id_candidato
     response = requests.put(url, headers=headers, json=data)
     json = response.json()
     return jsonify(json)
