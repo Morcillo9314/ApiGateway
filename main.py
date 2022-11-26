@@ -137,6 +137,15 @@ def eliminarCandidato(id):
     json = response.json()
     return jsonify(json)
 
+@app.route("/candidatos/<string:id_candidato>/partidos/<string:id_partido>", methods=["PUT"])
+def asignarPartidoACandidato(id, id_partido):
+    data = request.get_json()
+    headers = {"Content-Type": "application/json; charset=utf-8"}
+    url = dataConfig["url-backend-resultados"]+"/candidatos/"+id +"/partidos/"+ id_partido
+    response = requests.put(url, headers=headers, json= data)
+    Json = response.json()
+    return jsonify(Json)
+
 ###################################
 ##        ENDPOINTS DE MESAS     ##
 ###################################
@@ -190,7 +199,8 @@ def eliminarMesa(id):
 #########################################
 ##        ENDPOINTS DE RESULTADOS      ##
 #########################################
-@app.route("/resultados",methods=['GET'])
+
+@app.route("/resultados", methods=['GET'])
 def getResultados():
     headers = {"Content-Type": "application/json; charset=utf-8"}
     url = dataConfig["url-backend-resultados"] + '/resultados'
@@ -235,6 +245,7 @@ def eliminarResultado(id_resultado):
     response = requests.delete(url, headers=headers)
     json = response.json()
     return jsonify(json)
+
 
 #######################################
 ##        ENDPOINTS DE PARTIDOS      ##
