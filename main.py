@@ -94,8 +94,9 @@ def validarPermiso(endPoint, metodo, idRol):
 @app.route("/candidatos",methods=['GET'])
 def getCandidatos():
     headers = {"Content-Type": "application/json; charset=utf-8"}
-    url = dataConfig["url-backend-resultados"] + '/candidatos'
+    url = dataConfig["url-backend-resultados"] + '/candidato'
     response = requests.get(url, headers=headers)
+    print(response)
     json = response.json()
     return jsonify(json)
 
@@ -113,7 +114,7 @@ def crearCandidato():
 @app.route("/candidatos/<string:id>", methods=['GET'])
 def getCandidato(id):
     headers = {"Content-Type": "application/json; charset=utf-8"}
-    url = dataConfig["url-backend-resultados"] + '/candidatos/' + id
+    url = dataConfig["url-backend-resultados"] + '/candidato/' + id
     response = requests.get(url, headers=headers)
     json = response.json()
     return jsonify(json)
